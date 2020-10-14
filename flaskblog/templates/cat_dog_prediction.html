@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+     <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom text-center mb-4 pb-2"> Is it a dog or a cat? </legend>
+                <div class="form-group content-section">
+                    {{ form.picture.label(class="mt-2") }}
+                    {{ form.picture(class="form-control-file center mt-4")}}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{error}}</span></br>
+                        {% endfor %}
+                    {% endif %}      
+                    <div class="mt-4 mb-2">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </div>
+            </fieldset>
+   </form>
+   
+   {% if img %}
+   <div class="content-section">
+       <div class="media">
+            <img  src="{{img}}">
+            <p> This image looks like a {{label}}!</p>
+       </div> 
+   </div>
+   {% endif %}
+{% endblock content %}
